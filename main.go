@@ -1,38 +1,34 @@
 package main
 
-import "github.com/gin-gonic/gin"
-import "fmt"
-abcd
+import (
+	"fmt"
+	"pack"
 
-func getting() {
-	fmt.Printf("hello, world\n")
+	"github.com/gin-gonic/gin"
+)
+
+type myForm struct {
+	Colors []string `form:"colors[]"`
 }
 
 func main() {
-	// r := gin.Default()
-	// r.GET("/ping", func(c *gin.Context) {
-	// 	c.JSON(200, gin.H{
-	// 		"message": "pong",
-	// 	})
-	// })
-	// r.Run() // listen and serve on 0.0.0.0:8080
+	pack.Printsl()
+	r := gin.Default()
 
-	// Disable Console Color
-	// gin.DisableConsoleColor()
+	r.LoadHTMLGlob("views/*")
+	r.GET("/", indexHandler)
+	r.POST("/", formHandler)
 
-	// Creates a gin router with default middleware:
-	// logger and recovery (crash-free) middleware
-	router := gin.Default()
-	getting()
-	router.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	// router.GET("/someGet", getting)
+	r.Run(":8080")
+}
 
-	// By default it serves on :8080 unless a
-	// PORT environment variable was defined.
-	router.Run()
-	// router.Run(":3000") for a hard coded port
+func indexHandler(c *gin.Context) {
+	c.HTML(200, "form.html", nil)
+}
+
+func formHandler(c *gin.Context) {
+	var fakeForm myForm
+	c.Bind(&fakeForm)
+	fmt.Print(fakeForm.Colors)
+	c.JSON(200, gin.H{"color": fakeForm.Colors})
 }
