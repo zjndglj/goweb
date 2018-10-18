@@ -12,15 +12,22 @@
     <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/fontawesome/css/font-awesome.css" rel="stylesheet">
 
     <link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/bk.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
+    <link href="/views/static/css/main.css" rel="stylesheet">
     <!-- 以下两个插件用于在IE8以及以下版本浏览器支持HTML5元素和媒体查询，如果不需要用可以移除 -->
     <!--[if lt IE 9]>
     <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/html5shiv.min.js"></script>
     <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/respond.min.js"></script>
     <![endif]-->
+    <script>
+        function displayDate(){
+            document.getElementById("demo").innerHTML=Date();
+        }
+        </script>
 </head>
 
 <body>
+        <p id="demo">这是一个段落</p>
+        <button type="button" onclick="displayDate()">显示日期</button>
     <div class="wrap">
         <!-- 头部 -->
         <header>
@@ -37,7 +44,7 @@
                         <ul class="nav">
                             <li class="user-info">
                                 <a href="#">
-                                <img class="img-rounded" src="img/avatar.png">
+                                <img class="img-rounded" src="/views/static/img/avatar.png">
                                 <span>admin</span>
                             </a>
                             </li>
@@ -338,7 +345,9 @@
 
     <script src="https://magicbox.bk.tencent.com/static_api/v3/bk/js/bk.js"></script>
 
-    <script src="./js/index.js"></script>
+ 
+
+    <script type="text/javascript" src="/views/static/js/index.js"></script>
 
 
 </body>
